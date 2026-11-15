@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1794713610754,
+      "tag": "0000_wealth_wise_core",
+      "breakpoints": true
+    }
+  ]
+}
