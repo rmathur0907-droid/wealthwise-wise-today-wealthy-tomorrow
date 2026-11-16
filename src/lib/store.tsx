@@ -82,7 +82,8 @@ function fail(action: string, error: unknown) {
 }
 
 // ---------- row mappers ----------
-type Row = Record<string, unknown>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Row = any;
 const toTx = (r: Row): Transaction & { family_group_id?: string | null } => ({
   id: String(r.id),
   mode: r.mode as Mode,
