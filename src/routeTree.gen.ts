@@ -15,6 +15,16 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAssistantRouteImport } from './routes/app.assistant'
+import { Route as AppBudgetRouteImport } from './routes/app.budget'
+import { Route as AppBusinessRouteImport } from './routes/app.business'
+import { Route as AppFamilyRouteImport } from './routes/app.family'
+import { Route as AppGoalsRouteImport } from './routes/app.goals'
+import { Route as AppLearnRouteImport } from './routes/app.learn'
+import { Route as AppPortfolioRouteImport } from './routes/app.portfolio'
+import { Route as AppReportsRouteImport } from './routes/app.reports'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppTransactionsRouteImport } from './routes/app.transactions'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +56,56 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAssistantRoute = AppAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBudgetRoute = AppBudgetRouteImport.update({
+  id: '/budget',
+  path: '/budget',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBusinessRoute = AppBusinessRouteImport.update({
+  id: '/business',
+  path: '/business',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFamilyRoute = AppFamilyRouteImport.update({
+  id: '/family',
+  path: '/family',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppGoalsRoute = AppGoalsRouteImport.update({
+  id: '/goals',
+  path: '/goals',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLearnRoute = AppLearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPortfolioRoute = AppPortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTransactionsRoute = AppTransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,6 +113,16 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/api/chat': typeof ApiChatRoute
+  '/app/assistant': typeof AppAssistantRoute
+  '/app/budget': typeof AppBudgetRoute
+  '/app/business': typeof AppBusinessRoute
+  '/app/family': typeof AppFamilyRoute
+  '/app/goals': typeof AppGoalsRoute
+  '/app/learn': typeof AppLearnRoute
+  '/app/portfolio': typeof AppPortfolioRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/transactions': typeof AppTransactionsRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
@@ -60,6 +130,16 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/api/chat': typeof ApiChatRoute
+  '/app/assistant': typeof AppAssistantRoute
+  '/app/budget': typeof AppBudgetRoute
+  '/app/business': typeof AppBusinessRoute
+  '/app/family': typeof AppFamilyRoute
+  '/app/goals': typeof AppGoalsRoute
+  '/app/learn': typeof AppLearnRoute
+  '/app/portfolio': typeof AppPortfolioRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/transactions': typeof AppTransactionsRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
@@ -69,13 +149,54 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/api/chat': typeof ApiChatRoute
+  '/app/assistant': typeof AppAssistantRoute
+  '/app/budget': typeof AppBudgetRoute
+  '/app/business': typeof AppBusinessRoute
+  '/app/family': typeof AppFamilyRoute
+  '/app/goals': typeof AppGoalsRoute
+  '/app/learn': typeof AppLearnRoute
+  '/app/portfolio': typeof AppPortfolioRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/transactions': typeof AppTransactionsRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/auth' | '/reset-password' | '/api/chat' | '/app/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/reset-password'
+    | '/api/chat'
+    | '/app/assistant'
+    | '/app/budget'
+    | '/app/business'
+    | '/app/family'
+    | '/app/goals'
+    | '/app/learn'
+    | '/app/portfolio'
+    | '/app/reports'
+    | '/app/settings'
+    | '/app/transactions'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/reset-password' | '/api/chat' | '/app'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/api/chat'
+    | '/app/assistant'
+    | '/app/budget'
+    | '/app/business'
+    | '/app/family'
+    | '/app/goals'
+    | '/app/learn'
+    | '/app/portfolio'
+    | '/app/reports'
+    | '/app/settings'
+    | '/app/transactions'
+    | '/app'
   id:
     | '__root__'
     | '/'
@@ -83,6 +204,16 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/api/chat'
+    | '/app/assistant'
+    | '/app/budget'
+    | '/app/business'
+    | '/app/family'
+    | '/app/goals'
+    | '/app/learn'
+    | '/app/portfolio'
+    | '/app/reports'
+    | '/app/settings'
+    | '/app/transactions'
     | '/app/'
   fileRoutesById: FileRoutesById
 }
@@ -138,14 +269,104 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/assistant': {
+      id: '/app/assistant'
+      path: '/assistant'
+      fullPath: '/app/assistant'
+      preLoaderRoute: typeof AppAssistantRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/budget': {
+      id: '/app/budget'
+      path: '/budget'
+      fullPath: '/app/budget'
+      preLoaderRoute: typeof AppBudgetRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/business': {
+      id: '/app/business'
+      path: '/business'
+      fullPath: '/app/business'
+      preLoaderRoute: typeof AppBusinessRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/family': {
+      id: '/app/family'
+      path: '/family'
+      fullPath: '/app/family'
+      preLoaderRoute: typeof AppFamilyRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/goals': {
+      id: '/app/goals'
+      path: '/goals'
+      fullPath: '/app/goals'
+      preLoaderRoute: typeof AppGoalsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/learn': {
+      id: '/app/learn'
+      path: '/learn'
+      fullPath: '/app/learn'
+      preLoaderRoute: typeof AppLearnRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/portfolio': {
+      id: '/app/portfolio'
+      path: '/portfolio'
+      fullPath: '/app/portfolio'
+      preLoaderRoute: typeof AppPortfolioRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/transactions': {
+      id: '/app/transactions'
+      path: '/transactions'
+      fullPath: '/app/transactions'
+      preLoaderRoute: typeof AppTransactionsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAssistantRoute: typeof AppAssistantRoute
+  AppBudgetRoute: typeof AppBudgetRoute
+  AppBusinessRoute: typeof AppBusinessRoute
+  AppFamilyRoute: typeof AppFamilyRoute
+  AppGoalsRoute: typeof AppGoalsRoute
+  AppLearnRoute: typeof AppLearnRoute
+  AppPortfolioRoute: typeof AppPortfolioRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppTransactionsRoute: typeof AppTransactionsRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAssistantRoute: AppAssistantRoute,
+  AppBudgetRoute: AppBudgetRoute,
+  AppBusinessRoute: AppBusinessRoute,
+  AppFamilyRoute: AppFamilyRoute,
+  AppGoalsRoute: AppGoalsRoute,
+  AppLearnRoute: AppLearnRoute,
+  AppPortfolioRoute: AppPortfolioRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppTransactionsRoute: AppTransactionsRoute,
   AppIndexRoute: AppIndexRoute,
 }
 

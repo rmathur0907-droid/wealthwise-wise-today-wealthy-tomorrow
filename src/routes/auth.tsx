@@ -57,7 +57,7 @@ function AuthPage() {
   };
   const signUp = async (e: FormEvent) => {
     e.preventDefault();
-    if (password.length < 8) return toast.error("Use at least 8 characters for your password.");
+    if (password.length < 8) { toast.error("Use at least 8 characters for your password."); return; }
     setBusy("signup");
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -65,7 +65,7 @@ function AuthPage() {
       options: { emailRedirectTo: `${window.location.origin}/app`, data: { display_name: name || email.split("@")[0] } },
     });
     setBusy(null);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (!data.session) toast.success("Check your email to confirm your account, then sign in.");
   };
   const google = async () => {
@@ -81,7 +81,7 @@ function AuthPage() {
     setBusy("forgot");
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
     setBusy(null);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("If that email has an account, a reset link is on its way.");
     setView("main");
   };
