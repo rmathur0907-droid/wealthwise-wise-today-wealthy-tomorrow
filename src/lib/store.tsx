@@ -134,9 +134,9 @@ const toMember = (r: Row): FamilyMember => ({
 
 const txRow = (t: Partial<NewTransaction>) => {
   const { ...rest } = t as Record<string, unknown>;
-  delete rest.id;
-  delete rest.user_id;
-  delete rest.created_at;
+  delete rest["id"];
+  delete rest["user_id"];
+  delete rest["created_at"];
   return rest;
 };
 
