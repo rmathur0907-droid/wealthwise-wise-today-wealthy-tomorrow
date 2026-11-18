@@ -25,6 +25,8 @@ import { Route as AppPortfolioRouteImport } from './routes/app.portfolio'
 import { Route as AppReportsRouteImport } from './routes/app.reports'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppTransactionsRouteImport } from './routes/app.transactions'
+import { Route as AppAssistantIndexRouteImport } from './routes/app.assistant.index'
+import { Route as AppAssistantThreadIdRouteImport } from './routes/app.assistant.$threadId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -106,6 +108,16 @@ const AppTransactionsRoute = AppTransactionsRouteImport.update({
   path: '/transactions',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAssistantIndexRoute = AppAssistantIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppAssistantRoute,
+} as any)
+const AppAssistantThreadIdRoute = AppAssistantThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => AppAssistantRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -113,7 +125,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/api/chat': typeof ApiChatRoute
-  '/app/assistant': typeof AppAssistantRoute
+  '/app/assistant': typeof AppAssistantRouteWithChildren
   '/app/budget': typeof AppBudgetRoute
   '/app/business': typeof AppBusinessRoute
   '/app/family': typeof AppFamilyRoute
@@ -124,13 +136,14 @@ export interface FileRoutesByFullPath {
   '/app/settings': typeof AppSettingsRoute
   '/app/transactions': typeof AppTransactionsRoute
   '/app/': typeof AppIndexRoute
+  '/app/assistant/$threadId': typeof AppAssistantThreadIdRoute
+  '/app/assistant/': typeof AppAssistantIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/api/chat': typeof ApiChatRoute
-  '/app/assistant': typeof AppAssistantRoute
   '/app/budget': typeof AppBudgetRoute
   '/app/business': typeof AppBusinessRoute
   '/app/family': typeof AppFamilyRoute
@@ -141,6 +154,8 @@ export interface FileRoutesByTo {
   '/app/settings': typeof AppSettingsRoute
   '/app/transactions': typeof AppTransactionsRoute
   '/app': typeof AppIndexRoute
+  '/app/assistant/$threadId': typeof AppAssistantThreadIdRoute
+  '/app/assistant': typeof AppAssistantIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -149,7 +164,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/api/chat': typeof ApiChatRoute
-  '/app/assistant': typeof AppAssistantRoute
+  '/app/assistant': typeof AppAssistantRouteWithChildren
   '/app/budget': typeof AppBudgetRoute
   '/app/business': typeof AppBusinessRoute
   '/app/family': typeof AppFamilyRoute
@@ -160,6 +175,8 @@ export interface FileRoutesById {
   '/app/settings': typeof AppSettingsRoute
   '/app/transactions': typeof AppTransactionsRoute
   '/app/': typeof AppIndexRoute
+  '/app/assistant/$threadId': typeof AppAssistantThreadIdRoute
+  '/app/assistant/': typeof AppAssistantIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -180,13 +197,14 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/transactions'
     | '/app/'
+    | '/app/assistant/$threadId'
+    | '/app/assistant/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/reset-password'
     | '/api/chat'
-    | '/app/assistant'
     | '/app/budget'
     | '/app/business'
     | '/app/family'
@@ -197,6 +215,8 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/transactions'
     | '/app'
+    | '/app/assistant/$threadId'
+    | '/app/assistant'
   id:
     | '__root__'
     | '/'
@@ -215,6 +235,8 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/transactions'
     | '/app/'
+    | '/app/assistant/$threadId'
+    | '/app/assistant/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -339,11 +361,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTransactionsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/assistant/': {
+      id: '/app/assistant/'
+      path: '/'
+      fullPath: '/app/assistant/'
+      preLoaderRoute: typeof AppAssistantIndexRouteImport
+      parentRoute: typeof AppAssistantRoute
+    }
+    '/app/assistant/$threadId': {
+      id: '/app/assistant/$threadId'
+      path: '/$threadId'
+      fullPath: '/app/assistant/$threadId'
+      preLoaderRoute: typeof AppAssistantThreadIdRouteImport
+      parentRoute: typeof AppAssistantRoute
+    }
   }
 }
 
+interface AppAssistantRouteChildren {
+  AppAssistantThreadIdRoute: typeof AppAssistantThreadIdRoute
+  AppAssistantIndexRoute: typeof AppAssistantIndexRoute
+}
+
+const AppAssistantRouteChildren: AppAssistantRouteChildren = {
+  AppAssistantThreadIdRoute: AppAssistantThreadIdRoute,
+  AppAssistantIndexRoute: AppAssistantIndexRoute,
+}
+
+const AppAssistantRouteWithChildren = AppAssistantRoute._addFileChildren(
+  AppAssistantRouteChildren,
+)
+
 interface AppRouteChildren {
-  AppAssistantRoute: typeof AppAssistantRoute
+  AppAssistantRoute: typeof AppAssistantRouteWithChildren
   AppBudgetRoute: typeof AppBudgetRoute
   AppBusinessRoute: typeof AppBusinessRoute
   AppFamilyRoute: typeof AppFamilyRoute
@@ -357,7 +407,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
-  AppAssistantRoute: AppAssistantRoute,
+  AppAssistantRoute: AppAssistantRouteWithChildren,
   AppBudgetRoute: AppBudgetRoute,
   AppBusinessRoute: AppBusinessRoute,
   AppFamilyRoute: AppFamilyRoute,

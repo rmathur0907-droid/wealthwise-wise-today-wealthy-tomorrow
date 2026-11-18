@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AiInsightsCard } from "@/components/ww/ai-insights";
 import { DonutChart, TrendChart } from "@/components/ww/charts";
 import { TransactionDialog } from "@/components/ww/transaction-dialog";
+import { ImportDialog } from "@/components/ww/import-dialog";
 import { TxRow } from "@/components/ww/tx-row";
 import { EmptyState, Meter, PageHeader, StatCard } from "@/components/ww/ui";
 import { budgetReport, categoryBreakdown, forMode, inMonth, monthlySeries, portfolioSummary, totals, upcomingPayments } from "@/lib/analytics";
@@ -35,6 +36,7 @@ function Dashboard() {
   const txs = useModeTransactions();
   const [dialog, setDialog] = useState<TxType | null>(null);
   const [seeding, setSeeding] = useState(false);
+  const [importing, setImporting] = useState(false);
   const month = currentMonthKey();
 
   const stats = useMemo(() => {
@@ -80,7 +82,7 @@ function Dashboard() {
           action={
             <div className="flex flex-wrap justify-center gap-2">
               <Button onClick={() => setDialog("expense")}><Plus /> {t("tx.add")}</Button>
-              <Button asChild variant="outline"><Link to="/app/transactions"><Upload /> {t("tx.import")}</Link></Button>
+              <Button variant="outline" onClick={() => setImporting(true)}><Upload /> {t("tx.import")}</Button>
               <Button variant="soft" onClick={seed} disabled={seeding}><Sparkle /> Load sample data</Button>
             </div>
           }
@@ -205,6 +207,7 @@ function Dashboard() {
         </>
       )}
 
+      <ImportDialog open={importing} onOpenChange={setImporting} />
       <TransactionDialog open={dialog !== null} onOpenChange={(o) => !o && setDialog(null)} defaultType={dialog ?? "expense"} />
     </div>
   );
