@@ -6,14 +6,6 @@ This project was built with [Lovable](https://lovable.dev).
 
 **Live app**: https://wealthwise-wise-today-wealthy-tomorrow.lovable.app
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/4a3c5168-31fc-4901-a4c4-b98dc444b8ed).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
 ## Development
 
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
